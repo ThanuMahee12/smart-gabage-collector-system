@@ -2,6 +2,8 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Header from "./Components/Header";
 import Home from './Pages/Home'
 import MainContextProvider from "./context/MainContext";
+import DustbinsDetails from "./Pages/DustbinDetails";
+import Location from "./Pages/Location";
 const Layout = () =>
 {
   return (
@@ -18,6 +20,13 @@ const router = createBrowserRouter( [
       {
         path: "/",
         element:<Home/>
+      }, {
+        path: "/dustbin",
+        element:<DustbinsDetails/>
+      },
+      , {
+        path: "/location",
+        element:<Location/>
       }
     ]
 
