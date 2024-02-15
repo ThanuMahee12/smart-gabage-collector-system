@@ -23,14 +23,11 @@ const router = createBrowserRouter( [
       }, {
         path: "/dustbin",
         element:<DustbinsDetails/>
-      },
-      , {
+      }, {
         path: "/location",
         element:<Location/>
       }
     ]
-
-
 }])
 
 function App() {

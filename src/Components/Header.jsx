@@ -1,36 +1,51 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-const Header = ( pros ) =>
+
+
+const NavItem = ({path,title}) =>
 {
     return (
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
-            <div class="container-fluid">
-                <Link class="navbar-brand" to="/">
-                    <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24"/>
+        <li className="nav-item">
+            <Link className="nav-link" to={path}>{title}</Link>
+        </li>
+    )
+}
+
+const Header = ( pros ) =>
+{
+    const NavItems = useMemo( () => [
+        {
+            path: "/",
+            title:"Home"
+        },
+        {
+            path: "/dustbin",
+            title: "DustBins"
+        },
+        {
+            path: "/location",
+            title: "Location"
+        }
+    ], [])
+    return (
+        <nav className="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+            <div className="container-fluid">
+                <Link className="navbar-brand" to="/">
+                    <img className='rounded rounded-circle' src="https://cdn.dribbble.com/userupload/10700531/file/original-363739e9e7a0437b89d6ecbad658f5d8.jpg" alt="" width="40" height="40"/>
                 </Link>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <Link class="nav-link active" aria-current="page" to="/">Home</Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link class="nav-link" to="/dustbin">Dustbins</Link>
-                        </li>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {
+                            NavItems.map( ( item, index ) => ( <NavItem key={index} {...item} /> ))
+                       }
 
-                        <li class="nav-item">
-                            <Link class="nav-link" to="/location">Location</Link>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <Link class="nav-link" to="#">Dustbins</Link>
-
-                        </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                            <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
             </div>
