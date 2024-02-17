@@ -7,13 +7,14 @@ const mapStyles = {
     width: '100%'
 };
 
-const bounds = {
-    north: 41.8781, // Latitude of the northern boundary
-    south: 40.7128, // Latitude of the southern boundary
-    east: -74.006, // Longitude of the eastern boundary
-    west: -87.6298 // Longitude of the western boundary
-};
-const Home = () => {
+const Home = () =>
+{
+    const places = [
+        { id: 1, lat: 9.66304680, lng: 80.16508540 },
+        { id: 2, lat: 9.06304680, lng: 80.16508545 },
+        { id: 3, lat: 9.06364680, lng: 80.39508545 }
+        // Add more places as needed
+    ];
     return (
         <div className='container mt-5'>
             <div className='row vh-75'>
@@ -21,17 +22,13 @@ const Home = () => {
                     <GoogleMap
                         mapContainerStyle={mapStyles}
                         zoom={5}
-                        center={{ lat: 37.7749, lng: -122.4194 }} // Default center
-                        options={{ restriction: { latLngBounds: bounds }, gestureHandling: 'cooperative' }}
+                        center={{ lat: 9.69304680, lng: 80.16518540 }} // Default center
+
                     >
 
-                        <Marker key={343} position={{ lat: 40.85003, lng: -75.65005 }} icon={{
-                            url: markerIcon,
-                            scaledSize: new window.google.maps.Size( 40, 40 ), // Adjust the size of the marker icon
-                            origin: new window.google.maps.Point( 0, 0 ), // Set the origin point of the icon
-                            anchor: new window.google.maps.Point( 20, 40 ) // Set the anchor point of the icon
-                        }}
-                             />
+                        {places.map( place => (
+                            <Marker key={place.id} position={{ lat: place.lat, lng: place.lng }} title={place.name ?? "Hi"} />
+                        ) )}
 
                     </GoogleMap>
                 </div>

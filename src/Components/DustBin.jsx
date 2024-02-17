@@ -28,7 +28,8 @@ export const FillDustbins = () =>
     const [ dustbin, setdutbin] = useState([])
     useEffect( () =>
     {
-        fetchFillData().then( data => setdutbin( data ) ).catch(console.error)
+        setInterval( () => fetchFillData().then( data => setdutbin( data ) ).catch( console.error ) ,2000)
+
 
     }, [ setdutbin ])
     return (
