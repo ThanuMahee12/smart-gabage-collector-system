@@ -1,5 +1,8 @@
 import React from 'react';
 import { GoogleMap, Marker } from '@react-google-maps/api';
+import { UseDustbin } from '../context/Dustbin';
+import markerIcon from './102-1028357_png-library-waste-container-paper-trash-can-transprent-removebg-preview.png';
+import fullmarker from './Orange-trash-bin-isolated-on-transparent-background-PNG-removebg-preview.png';
 const mapStyles = {
     height: '90vh',
     width: '100%'
@@ -7,12 +10,7 @@ const mapStyles = {
 
 const Location = () =>
 {
-    const places = [
-        { id: 1, lat: 9.66304680, lng: 80.16508540 },
-        { id: 2, lat: 9.06304680, lng: 80.16508545 },
-        { id: 3, lat: 9.06364680, lng: 80.39508545 }
-        // Add more places as needed
-    ];
+    const { dustbindata }=UseDustbin()
     return (
         <>
    <GoogleMap
@@ -22,8 +20,13 @@ const Location = () =>
 
             >
 
-                {places.map( place => (
-                    <Marker key={place.id} position={{ lat: place.lat, lng: place.lng }} title={place.name??"Hi"} />
+                {dustbindata.map( place => (
+                    <Marker key={place.name} position={{ lat: place.location.lat, lng: place.location.lng }} title={place.address}
+                        icon={{
+                            url: place.fill ? fullmarker : markerIcon,
+                            scaledSize: new window.google.maps.Size( 50, 50 ),
+                        }}
+                    />
                 ) )}
             </GoogleMap></>
 

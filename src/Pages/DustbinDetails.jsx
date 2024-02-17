@@ -2,7 +2,7 @@ import React from 'react';
 import DataTable from 'react-data-table-component';
 import { UseDustbin } from '../context/Dustbin';
 import AddDustBin from './AddDustbin';
-
+import { GoogleMap, Marker } from '@react-google-maps/api';
 const columns = [
     {
         name: 'Title',
@@ -10,7 +10,11 @@ const columns = [
     },
     {
         name: 'Location',
-        selector: row => row.location.loc,
+        selector: row =>
+        {
+            const { lat, lng } = row.location;
+            return `(${lat},${lng})`
+        },
         hide:"md"
     },
     {

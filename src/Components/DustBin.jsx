@@ -26,7 +26,7 @@ const DustbinItem = ({address,Date,dustbin_id,track_sent,fill}) =>
 export const FillDustbins = () =>
 {
     const [ dustbin, setdutbin ] = useState( [] )
-    const callbackfill = value => setdutbin( value)
+    const callbackfill = value => setdutbin(value)
     useEffect( () =>
     {
         fetchFillData( callbackfill )
