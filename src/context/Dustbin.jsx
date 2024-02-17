@@ -31,15 +31,11 @@ const DustbinContext = createContext( null );
 const Dustbin = ( { children } ) =>
 {
     const [ dustbindata, setdutbindata ] = useReducer( reducer, [] );
-
+    const updateCallback = value  => setdutbindata( { type: "SET", value: value } )
     useEffect( () =>
     {
-        fetchData().then( result =>
-        {
-            setdutbindata( { type: "SET", value: result } )
-            console.log( dustbindata );
-})
-    }, [setdutbindata] );
+        fetchData( updateCallback);
+    }, [] );
     return (
         <DustbinContext.Provider value={{ dustbindata, setdutbindata }}>
             {children}

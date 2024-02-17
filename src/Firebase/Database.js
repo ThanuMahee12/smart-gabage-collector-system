@@ -1,5 +1,5 @@
 import { DB } from './Fire';
-import { ref, child, get } from "firebase/database";
+import { ref, child, get,onValue } from "firebase/database";
 import axios from 'axios';
 
 
@@ -20,25 +20,46 @@ import axios from 'axios';
 //     }
 
 // };
-export const fetchData = async () =>
+export const fetchData = ( updateCallback ) =>
 {
     const dbRef = ref( DB );
+
     try
     {
-        const snapshot = await get( child( dbRef, `Dustbin` ) );
-        if ( snapshot.exists() )
+        onValue( child( dbRef, 'Dustbin' ), ( snapshot ) =>
         {
-            return Object.values(snapshot.val());
-        } else
-        {
-            console.log( "No data available" );
-        }
+            if ( snapshot.exists() )
+            {
+                updateCallback( Object.values( snapshot.val() ) );
+            } else
+            {
+                console.log( 'No data available' );
+            }
+        } );
     } catch ( error )
     {
         console.error( error );
     }
-
 };
+// export const fetchData = async () =>
+// {
+//     const dbRef = ref( DB );
+//     try
+//     {
+//         const snapshot = await get( child( dbRef, `Dustbin` ) );
+//         if ( snapshot.exists() )
+//         {
+//             return Object.values(snapshot.val());
+//         } else
+//         {
+//             console.log( "No data available" );
+//         }
+//     } catch ( error )
+//     {
+//         console.error( error );
+//     }
+
+// };
 
 export const sentTrackData = async () =>
 {
