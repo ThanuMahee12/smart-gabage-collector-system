@@ -98,23 +98,27 @@ export const sentTrackData = async () =>
 //     }
 
 // };
-export const fetchFillData = async () =>
+export const fetchFillData = ( updateCallback ) =>
 {
     const dbRef = ref( DB );
+
     try
     {
-        const snapshot = await get( child( dbRef, `Dustbin` ) );
-        if ( snapshot.exists() )
+        // Listen for changes to the "Dustbin" location in the database
+        onValue( child( dbRef, 'Dustbin' ), ( snapshot ) =>
         {
-            const filldustbin = Object.values( snapshot.val() );
-            return filldustbin.filter( ele => ele.fill === true );
-        } else
-        {
-            console.log( "No data available" );
-        }
+            if ( snapshot.exists() )
+            {
+                const filldustbin = Object.values( snapshot.val() ).filter( ele => ele.fill === true );
+                // Call the updateCallback function with the updated data
+                updateCallback( filldustbin );
+            } else
+            {
+                console.log( 'No data available' );
+            }
+        } );
     } catch ( error )
     {
         console.error( error );
     }
-
 };

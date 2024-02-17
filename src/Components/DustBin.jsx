@@ -25,13 +25,14 @@ const DustbinItem = ({address,Date,dustbin_id,track_sent,fill}) =>
 }
 export const FillDustbins = () =>
 {
-    const [ dustbin, setdutbin] = useState([])
+    const [ dustbin, setdutbin ] = useState( [] )
+    const callbackfill = value => setdutbin( value)
     useEffect( () =>
     {
-        setInterval( () => fetchFillData().then( data => setdutbin( data ) ).catch( console.error ) ,2000)
+        fetchFillData( callbackfill )
 
 
-    }, [ setdutbin ])
+    }, [ ])
     return (
         <ul className="list-group">
             <li className="list-group-item d-flex justify-content-between align-items-center">
