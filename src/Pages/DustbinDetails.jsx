@@ -6,16 +6,16 @@ import AddDustBin from './AddDustbin';
 const columns = [
     {
         name: 'Title',
-        selector: row => row.name,
+        selector: row => row.dustid,
     },
     {
         name: 'Location',
-        selector: row => row.location,
+        selector: row => row.loc,
         hide:"md"
     },
     {
         name: 'Status',
-        selector: row => row.fill ? <span className='badge bg-danger p-1'>Filled</span> : <span className='badge bg-secondary p-1'>Empty</span>
+        selector: row => row.fill && !row.track_sent ? <span className='badge bg-danger p-1'>Filled</span> : <span className='badge bg-secondary p-1'>Empty</span>
     },
     {
         name: 'Address',
@@ -40,9 +40,7 @@ const DustbinsDetails = () =>
         <div className='mt-3 vh-100 container position-relative'>
             <h3 className='text-center'>DustBin Details</h3>
             <AddDustBin/>
-            {/* <div className='fixed-bottom d-flex w-100 justify-content-end p-2'>
-                <button className='d-block btn btn-dark rounded rounded-circle p-3 mb-4 me-2'><i className="bi bi-plus-circle-fill h3"></i></button>
-            </div> */}
+
 
             <DataTable
                 columns={columns}

@@ -36,7 +36,8 @@ const Dustbin = ( { children } ) =>
     {
         fetchData().then( result =>
         {
-    setdutbindata({type:"SET",value:result})
+            setdutbindata( { type: "SET", value: result } )
+            console.log( dustbindata );
 })
     }, [setdutbindata] );
     return (
