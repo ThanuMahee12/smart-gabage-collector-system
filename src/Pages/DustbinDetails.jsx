@@ -6,16 +6,16 @@ import AddDustBin from './AddDustbin';
 const columns = [
     {
         name: 'Title',
-        selector: row => row.dustid,
+        selector: row => row.name,
     },
     {
         name: 'Location',
-        selector: row => row.loc,
+        selector: row => row.location.loc,
         hide:"md"
     },
     {
         name: 'Status',
-        selector: row => row.fill && !row.track_sent ? <span className='badge bg-danger p-1'>Filled</span> : <span className='badge bg-secondary p-1'>Empty</span>
+        selector: row => row.fill ? ( !row.track_sent ? <span className='badge bg-danger p-1'>Filled</span> : <span className='badge bg-warning p-1'>Process</span> ) : ( <span className='badge bg-secondary p-1'>Empty</span> )
     },
     {
         name: 'Address',
