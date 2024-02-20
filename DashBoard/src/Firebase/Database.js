@@ -1,8 +1,20 @@
 import { DB } from './Fire';
-import { ref, child, get,onValue } from "firebase/database";
+import { ref, child, get,onValue,update} from "firebase/database";
 import axios from 'axios';
 
+export function updateAttributeInDatabase ( { dustbin_id } )
+{
+    const dbRef = ref( DB, 'Dustbin' ); // Replace 'yourDatabaseNode' with the path to the desired node in your database
 
+    try
+    {
+        update( dbRef, { [`${dustbin_id}/track_sent`]: true } );
+        console.log( 'Attribute updated successfully' );
+    } catch ( error )
+    {
+        console.error( 'Error updating attribute:', error );
+    }
+}
 // export const fetchData = async () =>
 // {
 //     const dbRef = ref( DB );

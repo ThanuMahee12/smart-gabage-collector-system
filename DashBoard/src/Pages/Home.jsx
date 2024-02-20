@@ -19,8 +19,8 @@ const Home = () =>
 
                     <GoogleMap
                         mapContainerStyle={mapStyles}
-                        zoom={5}
-                        center={{ lat: 9.69304680, lng: 80.16518540 }} // Default center
+                        zoom={15}
+                        center={{ lat: 6.982654, lng: 81.076669 }} // Default center
 
                     >
 
@@ -31,6 +31,7 @@ const Home = () =>
                                     url: place.fill?fullmarker:markerIcon,
                                     scaledSize: new window.google.maps.Size( 40, 40 ),
                                 }}
+                                animation={place.fill && window.google.maps.Animation.BOUNCE}
 
                             />
                         ) )}
