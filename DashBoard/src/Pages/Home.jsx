@@ -13,13 +13,14 @@ const Home = () =>
 {
     const { dustbindata } = UseDustbin()
     return (
-        <div className='container mt-5'>
-            <div className='row vh-75'>
+        <div className='container mt-5 max-vh-100'>
+            <div className='row h-100'>
                 <div className='col-lg-8'>
 
                     <GoogleMap
                         mapContainerStyle={mapStyles}
                         zoom={15}
+                        gestureHandling={"greedy"}
                         center={{ lat: 6.982654, lng: 81.076669 }} // Default center
 
                     >

@@ -37,7 +37,7 @@ export const FillDustbins = () =>
     return (
         <ul className="list-group">
             <li className="list-group-item d-flex justify-content-between align-items-center">
-                <h3 className='text-center'>Filled Dustbins</h3>
+                <h3 className='text-center'>Dustbins</h3>
             </li>
             {dustbin?.length > 0 && dustbin?.map( ( ele, i ) => <DustbinItem {...ele} key={i} /> )}
 
